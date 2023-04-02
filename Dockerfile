@@ -19,7 +19,9 @@ RUN echo \
       tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 RUN apt-get update
-RUN apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+RUN apt-get install -y docker-ce-cli
+
+COPY --chown=jenkins:jenkins executors.groovy /usr/share/jenkins/ref/init.groovy.d/executors.groovy
 
 USER jenkins
 RUN jenkins-plugin-cli --plugins "blueocean docker-workflow"
