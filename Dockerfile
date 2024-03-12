@@ -36,10 +36,13 @@ RUN git config --global --add safe.directory /usr/local/flutter
 
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
-RUN flutter doctor -v
-RUN flutter channel master
-RUN flutter upgrade
+RUN chown -R jenkins:jenkins /usr/local/flutter
 
 # Install jenkins plugins
 USER jenkins
 RUN jenkins-plugin-cli --plugins "blueocean docker-workflow"
+
+# Run flutter doctor and upgrade
+RUN flutter doctor -v
+RUN flutter channel master
+RUN flutter upgrade
