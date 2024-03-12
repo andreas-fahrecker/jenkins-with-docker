@@ -1,7 +1,7 @@
 FROM jenkins/jenkins:alpine
 
 USER root
-RUN groupadd -g 281 docker
+RUN addgroup --gid 281 docker
 RUN usermod -aG docker jenkins
 
 RUN apk add --no-cache docker docker-compose
