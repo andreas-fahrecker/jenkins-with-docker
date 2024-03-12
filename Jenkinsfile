@@ -39,8 +39,7 @@ pipeline {
                     stages {
                         stage('Build') {
                             steps {
-                                sh 'cd alpine'
-                                sh 'docker build -t fah16145/jenkins-with-docker:alpine .'
+                                sh 'docker build -t fah16145/jenkins-with-docker:alpine alpine/'
                             }
                         }
                         stage('Push') {
